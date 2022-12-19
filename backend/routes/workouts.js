@@ -1,5 +1,5 @@
 const express = require("express")
-
+const Cluster0 = require("../models/workoutModel")
 //create a router
 const router = express.Router()
 
@@ -15,8 +15,14 @@ router.get("/:id", (req, res) => {
 })
 
 //POST a new workout
-router.post("/", (req, res) => {
-  res.json({ mssg: "POST a new workout" })
+router.post("/", async (req, res) => {
+  const { title, load, reps } = req.body
+  try {
+    const workout = await Cluster0.create({ title, load, reps })
+    res.status(200).json(workout)
+  } catch (error) {
+    res.status(400).json({ error: error.message })
+  }
 })
 
 //DELETE a new workout
