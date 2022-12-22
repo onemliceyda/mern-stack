@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "date-fns": "^2.29.3",
     "react-router-dom": "^6.5.0"
   }
